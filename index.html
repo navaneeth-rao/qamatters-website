@@ -181,7 +181,7 @@
             .hamburger { display: flex; }
         }
 
-        /* Hero Section with Integrated Mobile-First Artwork */
+        /* Hero Section with Image Placed on Left */
         .hero {
             background: linear-gradient(135deg, var(--dark) 0%, #1d3a44 100%);
             color: var(--white);
@@ -194,6 +194,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 32px;
+            flex-direction: row-reverse; /* Places Image on Left on Desktop */
         }
         .hero-text {
             flex: 1.2;
@@ -546,7 +547,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Hero Image -->
+    <!-- Hero Section (Hero Image Left, Text Right) -->
     <header class="hero" id="top">
         <div class="container">
             <div class="hero-inner">
@@ -566,7 +567,7 @@
         </div>
     </header>
 
-    <!-- About Us Section (With Faint Top-Right Watermark) -->
+    <!-- About Us Section -->
     <section id="about" class="about-section">
         <div class="container">
             <div class="section-label">About Us</div>
@@ -762,7 +763,7 @@
         </div>
     </section>
 
-    <!-- Why QA Matters Section (With Faint Bottom-Left Watermark) -->
+    <!-- Why QA Matters Section -->
     <section id="why">
         <div class="container">
             <div class="section-label">Why QA Matters</div>
