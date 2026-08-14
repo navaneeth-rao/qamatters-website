@@ -3,12 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>QA Matters | People. Capability. Opportunity.</title>
-    <!-- Google Fonts for sleek typography -->
+    
+    <!-- Priority 3: Optimise homepage title & description -->
+    <title>QA Matters | IT Recruitment & Specialist Talent Solutions Australia</title>
+    <meta name="description" content="QA Matters is a leading Australian recruitment agency offering specialized talent solutions across IT, Quality Assurance, software engineering, and corporate disciplines.">
+    <meta name="keywords" content="recruitment agency Australia, IT recruitment, QA recruitment, talent solutions, software testing recruitment, contract talent Australia">
+    
+    <!-- Indexing & Crawler Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Priority 1: Google Search Console Indexing Support & Sitemap -->
+    <link rel="canonical" href="https://qamatters.com.au/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://qamatters.com.au/sitemap.xml">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="QA Matters | Australian Recruitment & Talent Solutions">
+    <meta property="og:description" content="Connecting Australian businesses with top-tier technology, QA, and corporate professionals. Learn more about our recruitment services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qamatters.com.au/">
+    <meta property="og:image" content="https://qamatters.com.au/logo.png">
+
+    <!-- Updated Typography: Inter for Body/Headings + Rozha One for High-Contrast Display Logo Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rozha+One&display=swap" rel="stylesheet">
+
+    <!-- Priority 4: Structured Data (Schema.org) for Enhanced SEO Search Visibility -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RecruitmentAgency",
+      "name": "QA Matters",
+      "url": "https://qamatters.com.au",
+      "logo": "https://qamatters.com.au/logo.png",
+      "email": "hello@qamatters.com.au",
+      "description": "Australian recruitment agency specializing in IT, QA, and high-impact talent solutions.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AU"
+      }
+    }
+    </script>
+
     <style>
         :root {
             --primary: #0f6b5c;
@@ -29,40 +65,45 @@
             --nav-height-desktop: 80px;
             --nav-height-mobile: 70px;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Smooth Scrolling Configuration across Mobile & Desktop */
-        html { 
-            scroll-behavior: smooth; 
+
+        /* Universal Scroll Enforcement */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-height-desktop) + 10px);
             -webkit-text-size-adjust: 100%;
-            -webkit-overflow-scrolling: touch;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: var(--dark);
             line-height: 1.6;
             background: var(--white);
             overflow-x: hidden;
+            overflow-y: visible;
             width: 100%;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
-        }
-        a { text-decoration: none; color: inherit; }
-        
-        .container { 
-            width: 100%;
-            max-width: 1180px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
-            position: relative; 
-            z-index: 2; 
+            -webkit-overflow-scrolling: touch;
         }
 
-        /* Accurate Scroll Alignment (Accounts for Navbar Height) */
-        section, 
-        .cta-container-target,
-        footer {
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Target Scroll Offsets for Laptop/Mobile */
+        section, .cta-container-target, footer {
             scroll-margin-top: calc(var(--nav-height-desktop) + 15px);
         }
 
@@ -86,52 +127,50 @@
             max-width: 1180px;
             margin: 0 auto;
         }
-        
+
         .brand-container {
             display: inline-flex;
             align-items: center;
-            gap: 8px; 
+            gap: 2px;
             text-decoration: none;
         }
         .main-logo-img {
-            height: 42px;
+            height: 44px;
             width: auto;
             display: block;
             object-fit: contain;
         }
         .qa-mark-img {
-            height: 38px;
+            height: 42px;
             width: auto;
             display: block;
             object-fit: contain;
         }
-        
+
         .word-matters {
-            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 36px; 
-            font-weight: 900;
-            letter-spacing: -1.2px;
-            line-height: 1;
+            font-family: 'Rozha One', 'Didot', 'Bodoni MT', serif;
+            font-size: 50px; 
+            font-weight: 400;
+            line-height: 0.9;
             display: inline-flex;
             align-items: center;
             margin-left: 2px;
-            text-transform: uppercase;
-            filter: drop-shadow(0px 3px 6px rgba(18, 43, 82, 0.15));
+            letter-spacing: -0.5px;
             transition: transform 0.2s ease;
         }
-        
+
         .brand-container:hover .word-matters {
             transform: translateY(-1px);
         }
 
-        .word-matters .b { 
+        .word-matters .b {
             color: var(--logo-blue);
             background: linear-gradient(180deg, #183a6f 0%, var(--logo-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
-        .word-matters .o { 
+
+        .word-matters .o {
             color: var(--logo-orange);
             background: linear-gradient(180deg, #ff7426 0%, var(--logo-orange) 100%);
             -webkit-background-clip: text;
@@ -141,7 +180,7 @@
         .nav-links { display: flex; align-items: center; gap: 24px; }
         .nav-links a {
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--dark);
             transition: color 0.2s ease, transform 0.2s ease;
             position: relative;
@@ -156,12 +195,12 @@
             transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
             box-shadow: 0 4px 10px rgba(15, 107, 92, 0.2);
         }
-        .nav-btn:hover { 
-            background: var(--primary-dark); 
+        .nav-btn:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 6px 14px rgba(15, 107, 92, 0.3);
         }
-        
+
         .hamburger {
             display: none;
             flex-direction: column;
@@ -177,29 +216,27 @@
             border-radius: 8px;
             transition: background-color 0.2s;
         }
-        .hamburger:active {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        .hamburger span { 
-            width: 24px; 
-            height: 2.5px; 
-            background: var(--dark); 
+        .hamburger span {
+            width: 24px;
+            height: 2.5px;
+            background: var(--dark);
             border-radius: 2px;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         @media (max-width: 960px) {
-            section, 
-            .cta-container-target,
-            footer {
+            html {
+                scroll-padding-top: calc(var(--nav-height-mobile) + 10px);
+            }
+            section, .cta-container-target, footer {
                 scroll-margin-top: calc(var(--nav-height-mobile) + 10px);
             }
             .nav-inner { height: var(--nav-height-mobile); padding: 0 16px; }
-            .main-logo-img { height: 32px; }
-            .qa-mark-img { height: 28px; }
-            .word-matters { font-size: 26px; letter-spacing: -1px; }
-            .brand-container { gap: 6px; }
-            
+            .main-logo-img { height: 34px; }
+            .qa-mark-img { height: 32px; }
+            .word-matters { font-size: 38px; }
+            .brand-container { gap: 2px; }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -213,21 +250,18 @@
                 gap: 12px;
                 box-shadow: var(--shadow-lg);
             }
-            .nav-links a { 
-                font-size: 16px; 
-                width: 100%; 
-                text-align: center; 
-                padding: 12px 0; 
+            .nav-links a {
+                font-size: 16px;
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
                 border-radius: 6px;
-            }
-            .nav-links a:active {
-                background-color: var(--light-bg);
             }
             .nav-links.open { display: flex; }
             .hamburger { display: flex; }
         }
 
-        /* Hero Section (Laptop: Image Right | Mobile/Tablet: Image First) */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--dark) 0%, #1d3a44 100%);
             color: var(--white);
@@ -235,23 +269,14 @@
             position: relative;
             overflow: hidden;
         }
-        .hero-inner { 
+        .hero-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 36px;
-            /* Laptop/Desktop Default: Text Left, Image Right */
         }
-        .hero-text {
-            flex: 1.2;
-            max-width: 600px;
-        }
-        .hero-image {
-            flex: 0.8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .hero-text { flex: 1.2; max-width: 600px; }
+        .hero-image { flex: 0.8; display: flex; justify-content: center; align-items: center; }
         .hero-image img {
             width: 100%;
             max-width: 440px;
@@ -262,9 +287,7 @@
             filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.45));
             transition: transform 0.3s ease;
         }
-        .hero-image img:hover {
-            transform: translateY(-4px);
-        }
+        .hero-image img:hover { transform: translateY(-4px); }
 
         .hero-tag {
             display: inline-block;
@@ -290,6 +313,7 @@
             font-size: clamp(16px, 2.5vw, 18px);
             color: rgba(255, 255, 255, 0.88);
             margin-bottom: 32px;
+            font-weight: 400;
         }
         .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
         .btn {
@@ -305,16 +329,15 @@
             border: none;
             min-height: 50px;
             text-align: center;
-            user-select: none;
         }
-        .btn-primary { 
-            background: var(--accent); 
-            color: var(--dark); 
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
             box-shadow: 0 4px 12px rgba(232, 168, 56, 0.3);
         }
-        .btn-primary:hover { 
-            background: #d99a2c; 
-            transform: translateY(-2px); 
+        .btn-primary:hover {
+            background: #d99a2c;
+            transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(232, 168, 56, 0.4);
         }
         .btn-outline-light {
@@ -322,26 +345,17 @@
             color: var(--white);
             border: 1.5px solid rgba(255, 255, 255, 0.4);
         }
-        .btn-outline-light:hover { 
-            border-color: var(--white); 
+        .btn-outline-light:hover {
+            border-color: var(--white);
             background: rgba(255, 255, 255, 0.08);
             transform: translateY(-2px);
         }
-        
-        /* Tablet & Mobile View: Displays Image First, Followed by Text Content */
+
         @media (max-width: 820px) {
-            .hero-inner {
-                flex-direction: column-reverse;
-                text-align: left;
-                gap: 28px;
-            }
+            .hero-inner { flex-direction: column-reverse; text-align: left; gap: 28px; }
             .hero { padding: 40px 0; }
-            .hero-image {
-                width: 100%;
-            }
-            .hero-image img {
-                max-width: 320px;
-            }
+            .hero-image { width: 100%; }
+            .hero-image img { max-width: 320px; }
             .hero-btns { width: 100%; }
             .btn { width: 100%; }
         }
@@ -370,44 +384,8 @@
             margin-bottom: 28px;
         }
 
-        /* Watermarks */
-        .about-section { 
-            background: var(--white); 
-            position: relative;
-        }
-        .about-section::after {
-            content: "";
-            position: absolute;
-            top: 20px;
-            right: -40px;
-            width: 320px;
-            height: 320px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%230f6b5c' opacity='0.035' d='M50,5 A45,45 0 1,0 95,50 A45,45 0 0,0 50,5 Z M50,25 A25,25 0 1,1 25,50 A25,25 0 0,1 50,25 Z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: contain;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        #why { 
-            background-color: var(--white); 
-            position: relative;
-        }
-        #why::after {
-            content: "";
-            position: absolute;
-            bottom: 10px;
-            left: -30px;
-            width: 280px;
-            height: 280px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23e8a838' opacity='0.04' d='M50,5 A45,45 0 1,0 95,50 A45,45 0 0,0 50,5 Z M50,25 A25,25 0 1,1 25,50 A25,25 0 0,1 50,25 Z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: contain;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* About Grid Layout */
+        /* About Section */
+        .about-section { background: var(--white); position: relative; }
         .about-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 24px 0; }
         .about-card {
             background: var(--light-bg);
@@ -423,6 +401,7 @@
             transform: translateY(-2px);
         }
         .about-card h3 { font-size: 19px; color: var(--primary); margin-bottom: 14px; font-weight: 700; }
+        
         .bullet-list { list-style: none; }
         .bullet-list li {
             position: relative;
@@ -440,48 +419,14 @@
             left: 2px;
             top: -2px;
         }
-        
-        .process-flow {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--accent-soft);
-            padding: 18px 24px;
-            border-radius: 10px;
-            margin: 24px 0;
-            font-weight: 700;
-            color: var(--primary);
-            flex-wrap: wrap;
-            gap: 8px;
-            font-size: 15px;
-            box-shadow: inset 0 0 0 1px rgba(232, 168, 56, 0.2);
-        }
 
-        .highlight-banner {
-            background: var(--accent-soft);
-            border-left: 4px solid var(--accent);
-            padding: 18px 20px;
-            border-radius: 0 10px 10px 0;
-            margin: 24px 0;
-            font-weight: 700;
-            color: var(--dark);
-        }
-        
-        @media (max-width: 768px) { 
+        @media (max-width: 768px) {
             section { padding: 50px 0; }
             .about-grid { grid-template-columns: 1fr; gap: 16px; }
-            .process-flow { 
-                justify-content: center; 
-                text-align: center;
-                gap: 6px;
-                font-size: 14px;
-            }
         }
 
         /* Services Section */
-        .services { 
-            background-color: var(--light-bg); 
-        }
+        .services { background-color: var(--light-bg); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .service-card {
             background: var(--white);
@@ -490,9 +435,9 @@
             padding: 28px;
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
-        .service-card:hover { 
-            transform: translateY(-4px); 
-            box-shadow: var(--shadow-md); 
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
             border-color: rgba(15, 107, 92, 0.3);
         }
         .service-icon {
@@ -500,18 +445,20 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 22px; background: var(--accent-soft); color: var(--primary);
             margin-bottom: 18px;
+            font-weight: 700;
         }
         .service-card h3 { font-size: 18px; margin-bottom: 8px; font-weight: 700; }
         .service-card p { font-size: 14px; color: var(--muted); }
 
         /* Why QA Matters */
+        #why { background-color: var(--white); }
         .why-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-bottom: 36px; }
-        .why-tile { 
-            border: 1px solid var(--border); 
-            border-radius: 12px; 
-            padding: 20px 14px; 
-            background: var(--light-bg); 
-            text-align: center; 
+        .why-tile {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 14px;
+            background: var(--light-bg);
+            text-align: center;
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
         .why-tile:hover {
@@ -520,12 +467,6 @@
         }
         .why-tile h4 { font-size: 16px; margin-bottom: 4px; color: var(--primary); font-weight: 700; }
         .why-tile p { font-size: 13px; color: var(--muted); }
-        .why-list { max-width: 680px; }
-        .why-list li {
-            list-style: none; margin-bottom: 14px; font-size: 15px;
-            display: flex; gap: 12px; align-items: flex-start;
-        }
-        .why-list .check { color: var(--primary); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
 
         /* How it Works */
         .how { background: var(--dark); color: var(--white); }
@@ -542,7 +483,7 @@
             background: rgba(255, 255, 255, 0.07);
         }
         .step-num { font-size: 30px; font-weight: 800; color: var(--accent); margin-bottom: 10px; line-height: 1; }
-        .step h3 { font-size: 17px; margin-bottom: 6px; }
+        .step h3 { font-size: 17px; margin-bottom: 6px; font-weight: 700; }
         .step p { font-size: 14px; color: rgba(255, 255, 255, 0.7); }
 
         /* CTA Section */
@@ -598,9 +539,9 @@
             padding: 50px 0 28px;
         }
         .footer-grid {
-            display: grid; 
+            display: grid;
             grid-template-columns: 1.4fr 1fr 1fr;
-            gap: 32px; 
+            gap: 32px;
             margin-bottom: 36px;
         }
         .footer-grid h4 { color: var(--white); margin-bottom: 14px; font-size: 15px; font-weight: 700; }
@@ -612,8 +553,8 @@
             border-top: 1px solid rgba(255, 255, 255, 0.12);
             padding-top: 24px; font-size: 13px; color: rgba(255, 255, 255, 0.5);
         }
-        @media (max-width: 768px) { 
-            .footer-grid { grid-template-columns: 1fr; gap: 28px; } 
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
         }
     </style>
 </head>
@@ -623,13 +564,13 @@
     <nav id="navbar">
         <div class="nav-inner">
             <a class="brand-container" href="#top">
-                <img src="logo.png" alt="Company Logo" class="main-logo-img">
-                <img src="qa-mark.png" alt="QA Mark" class="qa-mark-img">
+                <img src="logo.png" alt="QA Matters Australian recruitment and talent solutions" class="main-logo-img">
+                <img src="qa-mark.png" alt="QA Matters logo mark" class="qa-mark-img">
                 <span class="word-matters">
                     <span class="b">M</span><span class="b">a</span><span class="o">tt</span><span class="b">e</span><span class="o">r</span><span class="b">s</span>
                 </span>
             </a>
-            
+
             <div class="nav-links" id="navLinks">
                 <a href="#about">About Us</a>
                 <a href="#services">Services</a>
@@ -650,14 +591,14 @@
                 <div class="hero-text">
                     <span class="hero-tag">Australian recruitment &amp; talent solutions</span>
                     <h1>Great people make great <span class="accent">teams.</span></h1>
-                    <p>QA Matters connects businesses with skilled professionals who bring the right experience, mindset and quality to every role.</p>
+                    <p>QA Matters connects Australian businesses with skilled professionals who bring the right experience, mindset, and quality to every role.</p>
                     <div class="hero-btns">
                         <a href="#looking-to-hire" class="btn btn-primary">Find your next hire →</a>
                         <a href="#services" class="btn btn-outline-light">Explore our services</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="australia-hero-artwork.png" alt="QA Matters Great People Make Great Teams">
+                    <img src="australia-hero-artwork.png" alt="QA Matters Australian Tech Recruitment Banner">
                 </div>
             </div>
         </div>
@@ -667,20 +608,20 @@
     <section id="about" class="about-section">
         <div class="container">
             <div class="section-label">About Us</div>
-            <h2 class="section-title">Connecting Great People with Great Opportunities</h2>
-            
+            <h2 class="section-title">Connecting Great People with Great Opportunities in Australia</h2>
+
             <p class="section-sub" style="font-size: 17px; font-weight: 600; color: var(--primary);">At QA Matters, we believe that the right people make the difference.</p>
-            
+
             <p style="margin-bottom: 14px; color: var(--muted); font-size: 15px;">
-                We connect organisations with skilled professionals who bring the experience, capability and mindset needed to make a real impact. At the same time, we help candidates discover opportunities where their skills are valued, their careers can grow and their contribution matters.
+                We connect organisations across Australia with skilled professionals who bring the experience, capability, and mindset needed to make a real impact. At the same time, we help candidates discover opportunities where their skills are valued, their careers can grow, and their contribution matters.
             </p>
             <p style="margin-bottom: 28px; color: var(--muted); font-size: 15px;">
-                Our focus goes beyond simply filling positions. We take the time to understand our clients' business, their challenges, their culture and the capabilities they need. We also take the time to understand our candidates, their experience, career aspirations and the type of opportunity they are looking for. The result is a more meaningful connection between people, organisations and opportunities.
+                Our focus goes beyond simply filling positions. We take the time to understand our clients' business, their challenges, their culture, and the capabilities they need. We also take the time to understand our candidates, their experience, career aspirations, and the type of opportunity they are looking for.
             </p>
 
             <h3 style="font-size: 20px; font-weight: 800; margin: 28px 0 10px; color: var(--dark);">Supporting Organisations Across Multiple Disciplines</h3>
             <p style="color: var(--muted); font-size: 15px; margin-bottom: 20px;">
-                Every organisation has different requirements, and those requirements can change as projects, technology and business priorities evolve. QA Matters can help organisations access skilled professionals across a broad range of disciplines, including:
+                Every organisation has different requirements, and those requirements can change as projects, technology, and business priorities evolve. QA Matters can help organisations access skilled professionals across a broad range of disciplines, including:
             </p>
 
             <div class="about-grid">
@@ -710,110 +651,12 @@
                 </div>
             </div>
 
-            <p style="font-size: 15px; color: var(--muted); margin: 16px 0 28px;">
-                Whether you need an individual specialist, additional capability for an existing team or a larger workforce solution, we work with you to understand what you need and identify the right people.
-            </p>
-
-            <h3 style="font-size: 20px; font-weight: 800; margin: 28px 0 10px; color: var(--dark);">More Than Recruitment</h3>
-            <p style="color: var(--muted); font-size: 15px; margin-bottom: 14px;">
-                We believe successful recruitment starts with understanding the bigger picture. Our approach combines people, capability and business understanding to help organisations build teams that can perform today and adapt for tomorrow.
-            </p>
-            <p style="color: var(--muted); font-size: 15px; margin-bottom: 14px;">We can support organisations through different stages of their workforce requirements, including:</p>
-
-            <div class="process-flow">
-                <span>Understand</span> <span>→</span>
-                <span>Identify</span> <span>→</span>
-                <span>Connect</span> <span>→</span>
-                <span>Deliver</span> <span>→</span>
-                <span>Grow</span>
-            </div>
-
-            <p style="font-size: 15px; color: var(--muted); margin-bottom: 28px;">
-                From permanent recruitment and contract placements through to specialist resources and workforce capability, our goal is to make the process straightforward, transparent and focused on the right outcome.
-            </p>
-
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3>For Our Clients</h3>
-                    <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">
-                        Finding the right person is about more than matching a résumé to a position description. We look beyond qualifications and job titles to understand the experience, capability, cultural fit and potential contribution a candidate can bring to your organisation.
-                    </p>
-                    <p style="font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--dark);">Our clients can rely on QA Matters to help:</p>
-                    <ul class="bullet-list">
-                        <li>Identify the capabilities they need</li>
-                        <li>Access experienced and emerging talent</li>
-                        <li>Reduce time spent searching for suitable candidates</li>
-                        <li>Build specialist and multidisciplinary teams</li>
-                        <li>Support project and workforce requirements</li>
-                        <li>Respond quickly to changing business needs</li>
-                        <li>Find people who can contribute from day one</li>
-                    </ul>
-                    <p style="font-size: 14px; font-weight: 600; margin-top: 14px; color: var(--primary);">We aim to become an extension of your team, not simply another supplier in your recruitment process.</p>
-                </div>
-
-                <div class="about-card">
-                    <h3>For Candidates</h3>
-                    <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">
-                        Your career is more than your current job title. At QA Matters, we want to understand what you can do, where you want to go and what type of opportunity is right for you.
-                    </p>
-                    <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">
-                        Whether you are an experienced professional looking for your next challenge, a specialist seeking a new project, or someone ready to take the next step in your career, we connect you with opportunities that align with your skills and aspirations.
-                    </p>
-                    <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">
-                        We work with candidates across a wide range of professional disciplines and aim to build long-term relationships rather than simply placing people into roles.
-                    </p>
-                    <div class="highlight-banner" style="margin: 14px 0 0 0; font-size: 14px;">
-                        Your skills matter. Your experience matters. Your career matters.
-                    </div>
-                </div>
-            </div>
-
-            <h3 style="font-size: 20px; font-weight: 800; margin: 32px 0 10px; color: var(--dark);">Built on Quality, Integrity and Relationships</h3>
-            <p style="color: var(--muted); font-size: 15px; margin-bottom: 14px;">
-                The name <strong>QA Matters</strong> represents something bigger than quality assurance. It represents our belief that quality matters in everything we do:
-            </p>
-            <ul class="bullet-list" style="margin-bottom: 20px;">
-                <li>Quality matters in the people we introduce.</li>
-                <li>Quality matters in the opportunities we present.</li>
-                <li>Quality matters in the way we communicate.</li>
-                <li>Quality matters in the relationships we build.</li>
-                <li>And quality matters in the outcomes we deliver.</li>
-            </ul>
-            <p style="color: var(--muted); font-size: 15px; margin-bottom: 28px;">
-                We believe successful partnerships are built on trust, transparency, accountability and genuine understanding.
-            </p>
-
-            <div class="about-card" style="background: #f0f5f4; border-color: var(--primary);">
+            <div class="about-card" style="background: #f0f5f4; border-color: var(--primary); margin-top: 24px;">
                 <h3>Our Commitment</h3>
                 <p style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">
-                    Our ambition is to become a trusted supplier of choice for organisations looking for people, capability and professional expertise, while becoming a trusted career partner for professionals looking for their next opportunity.
-                </p>
-                <p style="font-size: 14px; color: var(--muted); margin-bottom: 10px;">
-                    We work across government, private enterprise and growing organisations, helping them access the people and capabilities they need to achieve their goals.
-                </p>
-                <p style="font-size: 14px; color: var(--muted);">
-                    We are constantly looking ahead, understanding emerging skills, changing workforce needs and evolving business requirements so that we can help our clients and candidates stay ready for what comes next.
+                    Our ambition is to become a trusted supplier of choice for Australian organisations looking for people, capability, and professional expertise, while becoming a trusted career partner for professionals looking for their next opportunity.
                 </p>
             </div>
-
-            <div class="cta" style="margin-top: 32px; background: var(--dark); color: var(--white); border: none;">
-                <h3 style="font-size: 22px; color: var(--accent); margin-bottom: 8px;">People. Capability. Opportunity.</h3>
-                <p style="color: rgba(255,255,255,0.85); margin-bottom: 18px;">At QA Matters, we bring the right people and the right opportunities together.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; text-align: left; margin-bottom: 18px;">
-                    <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                        <strong style="color: var(--accent);">For organisations:</strong><br>
-                        <span style="font-size: 13px; color: rgba(255,255,255,0.8);">Tell us what you need. We'll help you find the capability to deliver it.</span>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                        <strong style="color: var(--accent);">For candidates:</strong><br>
-                        <span style="font-size: 13px; color: rgba(255,255,255,0.8);">Tell us where you want to go. We'll help you find the opportunity to get there.</span>
-                    </div>
-                </div>
-                
-                <p style="font-size: 16px; font-weight: 800; color: var(--white); margin: 0;">QA Matters. Where People and Opportunities Connect.</p>
-            </div>
-
         </div>
     </section>
 
@@ -821,39 +664,39 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-label">What we do</div>
-            <h2 class="section-title">Recruitment that looks beyond the résumé.</h2>
-            <p class="section-sub">We focus on capability, culture and the practical needs of the role so businesses can hire with confidence.</p>
+            <h2 class="section-title">Specialist IT Recruitment &amp; Talent Solutions</h2>
+            <p class="section-sub">We focus on capability, culture, and technical fit so businesses can hire with total confidence.</p>
 
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">⌁</div>
-                    <h3>Technology Recruitment</h3>
-                    <p>Specialist talent across software, testing, automation, cloud, data, DevOps and digital delivery.</p>
+                    <h3>Technology &amp; IT Recruitment</h3>
+                    <p>Specialist talent across software engineering, automation, cloud infrastructure, data science, DevOps, and digital delivery.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">✓</div>
-                    <h3>QA &amp; Testing</h3>
-                    <p>Connect with experienced testers, automation engineers, test leads and quality specialists.</p>
+                    <h3>QA &amp; Testing Solutions</h3>
+                    <p>Connect with expert automation engineers, manual testers, test leads, and quality assurance specialists across Australia.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">◎</div>
-                    <h3>Contract Talent</h3>
-                    <p>Flexible professionals for project delivery, transformation programs and short or long-term engagements.</p>
+                    <h3>Contract Talent &amp; Contracting</h3>
+                    <p>Flexible tech professionals and contractors for project delivery, transformation programs, and key engagements.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">↗</div>
                     <h3>Permanent Recruitment</h3>
-                    <p>Find people who can grow with your organisation, not just fill a vacancy.</p>
+                    <p>Find long-term talent aligned with your corporate goals, team culture, and business roadmap.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">◆</div>
-                    <h3>Specialist Search</h3>
-                    <p>Targeted sourcing for hard-to-find skills and roles where quality matters more than volume.</p>
+                    <h3>Specialist Executive Search</h3>
+                    <p>Targeted executive and niche skill sourcing where quality, domain experience, and technical precision matter.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">∞</div>
-                    <h3>Workforce Partnerships</h3>
-                    <p>A practical recruitment partner for organisations building capability and scaling teams.</p>
+                    <h3>Workforce Capability Partnerships</h3>
+                    <p>A practical, long-term recruitment partner helping businesses scale tech capability and expand engineering teams seamlessly.</p>
                 </div>
             </div>
         </div>
@@ -865,7 +708,7 @@
             <div class="section-label">Why QA Matters</div>
             <h2 class="section-title">Because quality should not be an afterthought.</h2>
             <p style="font-size: 16px; color: var(--muted); margin-bottom: 24px; max-width: 700px;">
-                It should be built into everything you do. We bring together people, technology, experience and quality to help organisations reduce risk, improve delivery and create better outcomes. Better quality. Better people. Better outcomes.
+                It should be built into everything you do. We bring together people, technology, experience, and quality to help organisations reduce risk, improve delivery, and create better outcomes.
             </p>
             <div class="why-tiles">
                 <div class="why-tile"><h4>Skills</h4><p>Relevant expertise</p></div>
@@ -873,15 +716,6 @@
                 <div class="why-tile"><h4>Quality</h4><p>Proven capability</p></div>
                 <div class="why-tile"><h4>Trust</h4><p>Clear communication</p></div>
             </div>
-
-            <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 14px;">A better hiring experience</h3>
-            <p style="color: var(--muted); margin-bottom: 18px; font-size: 15px;">People first. Quality always. QA Matters is built around a simple idea: recruitment should create value for both the business and the person joining it.</p>
-            <ul class="why-list">
-                <li><span class="check">✓</span>Specialist understanding: we speak the language of technology, quality and delivery.</li>
-                <li><span class="check">✓</span>Quality over quantity: focused shortlists instead of a pile of unsuitable CVs.</li>
-                <li><span class="check">✓</span>Transparent communication: clear expectations throughout the hiring process.</li>
-                <li><span class="check">✓</span>Long-term relationships: we aim to become a trusted extension of your team.</li>
-            </ul>
         </div>
     </section>
 
@@ -896,7 +730,7 @@
                 <div class="step">
                     <div class="step-num">01</div>
                     <h3>Understand</h3>
-                    <p>We learn about the role, team, technical needs and what success looks like.</p>
+                    <p>We learn about the role, team, technical needs, and what success looks like.</p>
                 </div>
                 <div class="step">
                     <div class="step-num">02</div>
@@ -906,12 +740,12 @@
                 <div class="step">
                     <div class="step-num">03</div>
                     <h3>Assess</h3>
-                    <p>We validate capability, expectations, availability and alignment before presenting candidates.</p>
+                    <p>We validate capability, expectations, availability, and alignment before presenting candidates.</p>
                 </div>
                 <div class="step">
                     <div class="step-num">04</div>
                     <h3>Connect</h3>
-                    <p>We support both sides through interviews, offer and onboarding.</p>
+                    <p>We support both sides through interviews, offers, and onboarding.</p>
                 </div>
             </div>
 
@@ -919,7 +753,7 @@
             <div class="cta-container-target" id="looking-to-hire">
                 <div class="cta">
                     <h2>Looking for your next great hire?</h2>
-                    <p>Tell us what you're building, the skills you need and when you need them. Let's start a conversation.</p>
+                    <p>Tell us what you're building, the skills you need, and when you need them. Let's start a conversation.</p>
                     <button class="btn btn-primary" id="talkBtn">Talk to QA Matters →</button>
 
                     <div class="contact-card" id="contactCard">
@@ -940,13 +774,13 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a class="brand-container" href="#top">
-                        <img src="logo.png" alt="Company Logo" class="main-logo-img">
-                        <img src="qa-mark.png" alt="QA Mark" class="qa-mark-img">
+                        <img src="logo.png" alt="QA Matters recruitment agency Australia logo" class="main-logo-img">
+                        <img src="qa-mark.png" alt="QA Matters logo mark" class="qa-mark-img">
                         <span class="word-matters">
                             <span class="b" style="background:none;-webkit-text-fill-color:initial;color:#fff;">M</span><span class="b" style="background:none;-webkit-text-fill-color:initial;color:#fff;">a</span><span class="o" style="background:none;-webkit-text-fill-color:initial;color:var(--logo-orange);">tt</span><span class="b" style="background:none;-webkit-text-fill-color:initial;color:#fff;">e</span><span class="o" style="background:none;-webkit-text-fill-color:initial;color:var(--logo-orange);">r</span><span class="b" style="background:none;-webkit-text-fill-color:initial;color:#fff;">s</span>
                         </span>
                     </a>
-                    <p>Specialist recruitment and talent solutions for organisations that care about quality.</p>
+                    <p>Specialist recruitment and talent solutions for organisations that care about quality across Australia.</p>
                 </div>
                 <div>
                     <h4>Explore</h4>
@@ -974,25 +808,29 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        
+
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('open');
         });
 
-        // Smooth Scroll & Auto-Close Mobile Menu
+        // Safe Smooth Scroll Handler for cross-browser support
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    e.preventDefault();
                     navLinks.classList.remove('open');
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Contact Toggle Button
         const talkBtn = document.getElementById('talkBtn');
         const contactCard = document.getElementById('contactCard');
         talkBtn.addEventListener('click', (e) => {
