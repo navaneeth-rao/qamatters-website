@@ -73,8 +73,6 @@
             scroll-behavior: smooth;
             scroll-padding-top: calc(var(--nav-height-desktop) + 10px);
             -webkit-text-size-adjust: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
             width: 100%;
         }
 
@@ -83,12 +81,11 @@
             color: var(--dark);
             line-height: 1.6;
             background: var(--white);
-            overflow-x: hidden;
-            overflow-y: visible;
+            overflow-x: clip;
             width: 100%;
+            padding-top: var(--nav-height-desktop);
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
-            -webkit-overflow-scrolling: touch;
         }
 
         a { text-decoration: none; color: inherit; }
@@ -107,15 +104,19 @@
             scroll-margin-top: calc(var(--nav-height-desktop) + 15px);
         }
 
-        /* Navbar */
+        /* Navbar - Fixed at top on both Web and Mobile */
         nav {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(18, 34, 43, 0.04);
             transition: all 0.3s ease;
         }
         .nav-inner {
@@ -235,6 +236,9 @@
         @media (max-width: 960px) {
             html {
                 scroll-padding-top: calc(var(--nav-height-mobile) + 10px);
+            }
+            body {
+                padding-top: var(--nav-height-mobile);
             }
             section, .cta-container-target, footer {
                 scroll-margin-top: calc(var(--nav-height-mobile) + 10px);
@@ -595,7 +599,7 @@
         <div class="container">
             <div class="hero-inner">
                 <div class="hero-text">
-                    <span class="hero-tag">Australian recruitment &amp; talent solutions</span>
+                    <span class="hero-tag">Australian recruitment & talent solutions</span>
                     <h1>Great people make great <span class="accent">teams.</span></h1>
                     <p>QA Matters connects Australian businesses with skilled professionals who bring the right experience, mindset, and quality to every role.</p>
                     <div class="hero-btns">
@@ -632,7 +636,7 @@
 
             <div class="about-grid">
                 <div class="about-card">
-                    <h3>Technical &amp; Digital Disciplines</h3>
+                    <h3>Technical & Digital Disciplines</h3>
                     <ul class="bullet-list">
                         <li>Information Technology and Digital</li>
                         <li>Software Development and Engineering</li>
@@ -646,7 +650,7 @@
                     </ul>
                 </div>
                 <div class="about-card">
-                    <h3>Corporate &amp; Business Disciplines</h3>
+                    <h3>Corporate & Business Disciplines</h3>
                     <ul class="bullet-list">
                         <li>Human Resources</li>
                         <li>Finance and Accounting</li>
@@ -670,23 +674,23 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-label">What we do</div>
-            <h2 class="section-title">Specialist IT Recruitment &amp; Talent Solutions</h2>
+            <h2 class="section-title">Specialist IT Recruitment & Talent Solutions</h2>
             <p class="section-sub">We focus on capability, culture, and technical fit so businesses can hire with total confidence.</p>
 
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">⌁</div>
-                    <h3>Technology &amp; IT Recruitment</h3>
+                    <h3>Technology & IT Recruitment</h3>
                     <p>Specialist talent across software engineering, automation, cloud infrastructure, data science, DevOps, and digital delivery.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">✓</div>
-                    <h3>QA &amp; Testing Solutions</h3>
+                    <h3>QA & Testing Solutions</h3>
                     <p>Connect with expert automation engineers, manual testers, test leads, and quality assurance specialists across Australia.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">◎</div>
-                    <h3>Contract Talent &amp; Contracting</h3>
+                    <h3>Contract Talent & Contracting</h3>
                     <p>Flexible tech professionals and contractors for project delivery, transformation programs, and key engagements.</p>
                 </div>
                 <div class="service-card">
@@ -718,7 +722,7 @@
             </p>
             <div class="why-tiles">
                 <div class="why-tile"><h4>Skills</h4><p>Relevant expertise</p></div>
-                <div class="why-tile"><h4>Fit</h4><p>Team &amp; culture</p></div>
+                <div class="why-tile"><h4>Fit</h4><p>Team & culture</p></div>
                 <div class="why-tile"><h4>Quality</h4><p>Proven capability</p></div>
                 <div class="why-tile"><h4>Trust</h4><p>Clear communication</p></div>
             </div>
