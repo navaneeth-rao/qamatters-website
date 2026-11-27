@@ -68,9 +68,9 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Universal Scroll Enforcement */
+        /* Native smooth scroll disabled so custom cross-device JS easing controls speed */
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: auto;
             scroll-padding-top: calc(var(--nav-height-desktop) + 10px);
             -webkit-text-size-adjust: 100%;
             width: 100%;
@@ -86,9 +86,10 @@
             padding-top: var(--nav-height-desktop);
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
+            -webkit-overflow-scrolling: touch;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
 
         .container {
             width: 100%;
@@ -99,12 +100,12 @@
             z-index: 2;
         }
 
-        /* Target Scroll Offsets for Laptop/Mobile */
+        /* Target Scroll Offsets for Laptop/Tablet/Mobile */
         section, .cta-container-target, footer {
             scroll-margin-top: calc(var(--nav-height-desktop) + 15px);
         }
 
-        /* Navbar - Fixed at top on both Web and Mobile */
+        /* Navbar - Fixed at top on Desktop, Tablet, and Mobile */
         nav {
             position: fixed;
             top: 0;
@@ -117,7 +118,7 @@
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             box-shadow: 0 2px 10px rgba(18, 34, 43, 0.04);
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .nav-inner {
             display: flex;
@@ -134,6 +135,7 @@
             align-items: center;
             gap: 2px;
             text-decoration: none;
+            cursor: pointer;
         }
         .main-logo-img {
             height: 44px;
@@ -224,6 +226,7 @@
             min-height: 44px;
             border-radius: 8px;
             transition: background-color 0.2s;
+            -webkit-tap-highlight-color: transparent;
         }
         .hamburger span {
             width: 24px;
@@ -342,6 +345,7 @@
             border: none;
             min-height: 50px;
             text-align: center;
+            -webkit-tap-highlight-color: transparent;
         }
         .btn-primary {
             background: var(--accent);
@@ -575,7 +579,7 @@
 
     <!-- Navbar -->
     <nav id="navbar">
-        <div class="nav-inner">
+        <div class="nav-inner" id="navInner">
             <a class="brand-container" href="#top">
                 <img src="logo.png" alt="QA Matters Australian recruitment and talent solutions" class="main-logo-img">
                 <img src="qamatters-text.png" alt="QA Matters" class="qamatters-text-img">
@@ -588,7 +592,7 @@
                 <a href="#how">How it works</a>
                 <a href="#looking-to-hire" class="nav-btn">Hire Talent</a>
             </div>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -816,40 +820,163 @@
     </footer>
 
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+        (function () {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const navInner = document.getElementById('navInner');
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-
-        // Safe Smooth Scroll Handler for cross-browser support
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
+            function closeMobileMenu() {
+                if (navLinks.classList.contains('open')) {
                     navLinks.classList.remove('open');
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+            }
+
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = navLinks.classList.toggle('open');
+                hamburger.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            // Close mobile/tablet dropdown when tapping outside
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Universal Cross-Device Smooth Scroll Engine (Desktop, Tablet, iOS, Android)
+            let activeAnimationId = null;
+
+            function stopScrollAnimation() {
+                if (activeAnimationId !== null) {
+                    cancelAnimationFrame(activeAnimationId);
+                    activeAnimationId = null;
+                }
+            }
+
+            // Immediately yield control if user interacts via touch, mouse wheel, trackpad, or keyboard
+            ['wheel', 'touchmove', 'pointerdown', 'keydown'].forEach((eventName) => {
+                window.addEventListener(eventName, (e) => {
+                    if (eventName === 'keydown' && !['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
+                        return;
+                    }
+                    stopScrollAnimation();
+                }, { passive: true });
+            });
+
+            function getScrollY() {
+                return window.scrollY !== undefined
+                    ? window.scrollY
+                    : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+            }
+
+            function getMaxScrollY() {
+                const docHeight = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.offsetHeight
+                );
+                return Math.max(0, docHeight - window.innerHeight);
+            }
+
+            // Quintic ease-in-out for a silky, slow start and soft, unhurried landing
+            function easeInOutQuint(t) {
+                return t < 0.5
+                    ? 16 * t * t * t * t * t
+                    : 1 - Math.pow(-2 * t + 2, 5) / 2;
+            }
+
+            function smoothScrollToY(rawTargetY, customDuration) {
+                stopScrollAnimation();
+
+                const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const targetY = Math.min(Math.max(0, rawTargetY), getMaxScrollY());
+                const startY = getScrollY();
+                const distance = targetY - startY;
+
+                if (Math.abs(distance) < 2 || prefersReducedMotion) {
+                    window.scrollTo(0, targetY);
+                    return;
+                }
+
+                // Adaptive duration: scales smoothly across phone, tablet, and desktop screen heights
+                const computedDuration = customDuration || Math.min(1350, Math.max(800, Math.abs(distance) * 0.55));
+                let startTime = null;
+
+                function animate(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / computedDuration, 1);
+                    const eased = easeInOutQuint(progress);
+
+                    window.scrollTo(0, startY + distance * eased);
+
+                    if (progress < 1) {
+                        activeAnimationId = requestAnimationFrame(animate);
+                    } else {
+                        window.scrollTo(0, targetY);
+                        activeAnimationId = null;
+                    }
+                }
+
+                activeAnimationId = requestAnimationFrame(animate);
+            }
+
+            function scrollToElement(targetElement, customDuration) {
+                // Use navInner height so open mobile menus don't distort the offset
+                const headerHeight = navInner ? navInner.offsetHeight : (window.innerWidth <= 960 ? 70 : 80);
+                const extraBreathingRoom = window.innerWidth <= 768 ? 10 : 14;
+
+                const targetY = targetElement.id === 'top'
+                    ? 0
+                    : targetElement.getBoundingClientRect().top + getScrollY() - headerHeight - extraBreathingRoom;
+
+                smoothScrollToY(targetY, customDuration);
+            }
+
+            // Apply to all internal links (header menu, mobile drawer, top & footer logos, hero CTAs, footer links)
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        closeMobileMenu();
+
+                        // Slight delay on mobile/tablet so menu collapse finishes cleanly before scrolling
+                        const isMobileOrTablet = window.innerWidth <= 960;
+                        if (isMobileOrTablet) {
+                            requestAnimationFrame(() => scrollToElement(targetElement));
+                        } else {
+                            scrollToElement(targetElement);
+                        }
+                    }
+                });
+            });
+
+            // "Talk to QA Matters" button reveal + gentle scroll into view on small screens
+            const talkBtn = document.getElementById('talkBtn');
+            const contactCard = document.getElementById('contactCard');
+
+            talkBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                contactCard.classList.toggle('show');
+
+                if (contactCard.classList.contains('show')) {
+                    requestAnimationFrame(() => {
+                        const rect = contactCard.getBoundingClientRect();
+                        if (rect.bottom > window.innerHeight - 16) {
+                            const scrollNeeded = getScrollY() + (rect.bottom - window.innerHeight) + 28;
+                            smoothScrollToY(scrollNeeded, 700);
+                        }
                     });
                 }
             });
-        });
-
-        const talkBtn = document.getElementById('talkBtn');
-        const contactCard = document.getElementById('contactCard');
-        talkBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            contactCard.classList.toggle('show');
-            if (contactCard.classList.contains('show')) {
-                contactCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        });
+        })();
     </script>
 </body>
 </html>
